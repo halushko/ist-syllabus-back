@@ -44,5 +44,5 @@ go.imports.xml
 
 *.iml
 
-syllabus-*.json
+gsheets-reader.json
 logs

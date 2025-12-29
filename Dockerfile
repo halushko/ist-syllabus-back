@@ -13,6 +13,7 @@ RUN adduser -D -H appuser
 USER appuser
 
 COPY --from=build /out/app /app/app
+RUN mkdir "logs"
 
 EXPOSE 8080
 ENTRYPOINT ["/app/app"]
