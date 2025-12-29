@@ -18,15 +18,31 @@ coverage.*
 profile.cov
 
 # Dependency directories (remove the comment below to include it)
-# vendor/
+ vendor/
 
 # Go workspace file
 go.work
 go.work.sum
+go.imports.xml
 
 # env file
 .env
 
 # Editor/IDE
-# .idea/
-# .vscode/
+ .idea/
+ .vscode/
+.idea/.gitignore
+.idea/core-go.iml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/dictionaries
+.idea/dictionaries/*
+.idea/copilot.data.migration.agent.xml
+.idea/copilot.data.migration.ask.xml
+.idea/copilot.data.migration.edit.xml
+.idea/copilot.data.migration.ask2agent.xml
+
+*.iml
+
+syllabus-*.json
+logs
