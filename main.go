@@ -10,15 +10,17 @@ import (
 )
 
 var SpreadSheetId = os.Getenv("SPREAD_SHEET_ID")
+var GoogleCredentialsPath = os.Getenv("GOOGLE_CREDS_JSON")
 
 func main() {
 	err := logger.Init()
 	if err != nil {
+		log.Error("Failed to create Google Sheets client: ", err)
 		panic(err)
 	}
 
 	ctx := context.Background()
-	c, err := google.NewFromServiceAccountFile(ctx, "./gsheets-reader.json")
+	c, err := google.NewFromServiceAccountFile(ctx, GoogleCredentialsPath)
 	if err != nil {
 		log.Error("Failed to create Google Sheets client: ", err)
 		return
