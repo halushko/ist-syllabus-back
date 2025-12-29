@@ -1,19 +1,16 @@
 FROM golang:1.25-alpine AS build
 WORKDIR /src
 
-COPY go.mod ./
+COPY go.mod go.sum ./
 RUN go mod download
 
 COPY . ./
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /out/app ./main.go
+RUN CGO_ENABLED=0 GOOS=linux go build -o /out/app ./main.go
 
 FROM alpine:3.20
 WORKDIR /app
-RUN adduser -D -H appuser
+RUN adduser -D -H appuser && mkdir -p ./logs && chown -R appuser:appuser /app
+COPY --from=build /out/app /app/app
 USER appuser
-
-COPY --from=build /out/app /app
-RUN mkdir logs
-
 EXPOSE 8080
-ENTRYPOINT ["/app"]
+ENTRYPOINT ["/app/app"]
