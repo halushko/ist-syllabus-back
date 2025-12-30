@@ -128,5 +128,5 @@ func (s *SQLite) fillTable(tableName string, table map[string][]string) {
 }
 
 func (s *SQLite) Select(query string, args ...any) ([]map[string]any, error) {
-	return s.db.ExecSelect(query, args)
+	return s.db.ExecSelect(query, args...)
 }
