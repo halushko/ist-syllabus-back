@@ -68,10 +68,10 @@ func (s *SQLite) recreateTable(tableName string, headers map[string]string) {
 	i := 0
 	for _, col := range headers {
 		i++
+		sb.WriteString("\t" + col + " TEXT,\n")
+
 		if i < len(headers)-1 {
-			sb.WriteString("\t" + col + " TEXT,\n")
-		} else {
-			sb.WriteString("\t" + col)
+			sb.WriteString(",\n")
 		}
 	}
 
@@ -93,12 +93,13 @@ func (s *SQLite) fillTable(tableName string, table map[string][]string) {
 	j := 0
 	for col := range table {
 		i++
+
+		sbc.WriteString(col)
+		sbv.WriteString(table[col][j])
+
 		if i < len(table)-1 {
-			sbc.WriteString(col + ", ")
-			sbv.WriteString(table[col][j] + ", ")
-		} else {
-			sbc.WriteString(col)
-			sbv.WriteString(table[col][j])
+			sbc.WriteString(", ")
+			sbv.WriteString(", ")
 		}
 	}
 
