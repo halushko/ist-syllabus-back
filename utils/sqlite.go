@@ -33,11 +33,11 @@ func InitSQLite() (*SQLite, error) {
 
 	res := &SQLite{db: sql, g: gr, g2db: make(map[string]map[string]string), db2g: make(map[string]map[string]string)}
 
-	res.initTable(googleSheetsConfig.Levels[0], googleSheetsConfig.Levels[1])
-	res.initTable(googleSheetsConfig.Departments[0], googleSheetsConfig.Departments[1])
-	res.initTable(googleSheetsConfig.Specialties[0], googleSheetsConfig.Specialties[1])
-	res.initTable(googleSheetsConfig.Programs[0], googleSheetsConfig.Programs[1])
-	res.initTable(googleSheetsConfig.DepartmentPrograms[0], googleSheetsConfig.DepartmentPrograms[1])
+	res.initTable(GoogleSheetsConfig.Levels[0], GoogleSheetsConfig.Levels[1])
+	res.initTable(GoogleSheetsConfig.Departments[0], GoogleSheetsConfig.Departments[1])
+	res.initTable(GoogleSheetsConfig.Specialties[0], GoogleSheetsConfig.Specialties[1])
+	res.initTable(GoogleSheetsConfig.Programs[0], GoogleSheetsConfig.Programs[1])
+	res.initTable(GoogleSheetsConfig.DepartmentPrograms[0], GoogleSheetsConfig.DepartmentPrograms[1])
 
 	return res, nil
 }
@@ -125,4 +125,8 @@ func (s *SQLite) fillTable(tableName string, table map[string][]string) {
 			panic(err)
 		}
 	}
+}
+
+func (s *SQLite) Select(query string, args ...any) ([]map[string]any, error) {
+	return s.db.ExecSelect(query, args)
 }

@@ -1,6 +1,6 @@
 package utils
 
-type googleSheets struct {
+type GoogleSheets struct {
 	Levels             []string
 	Departments        []string
 	Specialties        []string

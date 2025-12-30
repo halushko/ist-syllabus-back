@@ -2,7 +2,7 @@ package utils
 
 const specialityDbName = "speciality_db"
 
-var googleSheetsConfig = googleSheets{
+var GoogleSheetsConfig = GoogleSheets{
 	Levels:             []string{"Рівень вищої освіти", "levels"},
 	Departments:        []string{"Кафедри", "departments"},
 	Specialties:        []string{"Спеціальності", "specialties"},
