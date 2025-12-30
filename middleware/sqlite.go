@@ -6,8 +6,8 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func GetAllLevels(db *utils.SQLite) ([]Level, error) {
-	levels := make([]Level, 0)
+func GetAllLevels(db *utils.SQLite) ([]string, error) {
+	res := make([]string, 0)
 	query := `SELECT DISTINCT name FROM levels ORDER BY CAST(lvl AS INTEGER) ASC;`
 	rows, err := db.Select(query)
 	if err != nil {
@@ -15,16 +15,7 @@ func GetAllLevels(db *utils.SQLite) ([]Level, error) {
 		return nil, err
 	}
 	for _, row := range rows {
-		//lvl, err := strconv.Atoi(row["lvl"].(string))
-		//if err != nil {
-		//	log.Errorf("GetAllLevels Atoi err for Level column: %v", err)
-		//	return nil, err
-		//}
-		level := Level{
-			Name: row["name"].(string),
-			//Level: lvl,
-		}
-		levels = append(levels, level)
+		res = append(res, row["name"].(string))
 	}
-	return levels, nil
+	return res, nil
 }
