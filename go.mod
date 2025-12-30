@@ -5,8 +5,8 @@ go 1.25.0
 require (
 	github.com/gin-gonic/gin v1.11.0
 	github.com/halushko/core-go v0.1.2
-	github.com/mattn/go-sqlite3 v1.14.32
 	github.com/sirupsen/logrus v1.9.3
+	modernc.org/sqlite v1.42.2
 )
 
 require (
@@ -64,5 +64,4 @@ require (
 	modernc.org/libc v1.67.2 // indirect
 	modernc.org/mathutil v1.7.1 // indirect
 	modernc.org/memory v1.11.0 // indirect
-	modernc.org/sqlite v1.42.2 // indirect
 )
