@@ -57,15 +57,16 @@ func (s *SQLite) initTable(sheetName, tableName string) {
 }
 
 func (s *SQLite) recreateTable(tableName string, headers map[string]string) {
+	log.Debugf("Heading to create table %s: %v", tableName, headers)
 	err := s.db.DropTable(tableName)
 	if err != nil {
 		log.Errorf("Can't drop %s sheet: %v", tableName, err)
 		panic(err)
 	}
 
+	i := 0
 	var sb strings.Builder
 
-	i := 0
 	for _, col := range headers {
 		i++
 		sb.WriteString(col + " TEXT")
