@@ -5,6 +5,8 @@ import (
 	"strings"
 
 	"github.com/halushko/core-go/sqlite"
+	_ "modernc.org/sqlite"
+
 	log "github.com/sirupsen/logrus"
 )
 
