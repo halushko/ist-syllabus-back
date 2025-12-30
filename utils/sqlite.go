@@ -95,7 +95,7 @@ func (s *SQLite) fillTable(tableName string, table map[string][]string) {
 		i++
 
 		sbc.WriteString(col)
-		sbv.WriteString(table[col][j])
+		sbv.WriteString("'" + table[col][j] + "'")
 
 		if i < len(table)-1 {
 			sbc.WriteString(", ")
@@ -103,7 +103,7 @@ func (s *SQLite) fillTable(tableName string, table map[string][]string) {
 		}
 	}
 
-	query := fmt.Sprintf(`INSERT INTO %s (%s)\nVALUES (%s);\n`, tableName, sbc.String(), sbv.String())
+	query := fmt.Sprintf(`INSERT INTO %s (%s) VALUES (%s);`, tableName, sbc.String(), sbv.String())
 	log.Debugf("Inserting into table with query:\n%s", query)
 	err := s.db.Execute(query)
 	if err != nil {
