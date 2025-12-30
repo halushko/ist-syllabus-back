@@ -69,6 +69,7 @@ func (r *GoogleReader) readGoogleTable(sheetName string) (map[string]string, map
 		return nil, nil, errors.New("data not found for table " + sheetName)
 	}
 
+	log.Debugf("Detected %d columns for sheet %s", size, sheetName)
 	columns := res[0][0:size]
 
 	res, err = r.gc.ReadByIndexes(r.spreadsheetId, sheetName, 1, 2, size, maxRows+1)
