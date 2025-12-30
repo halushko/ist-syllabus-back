@@ -4,7 +4,7 @@ go 1.25.0
 
 require (
 	github.com/gin-gonic/gin v1.11.0
-	github.com/halushko/core-go v0.1.3
+	github.com/halushko/core-go v0.1.4
 	github.com/sirupsen/logrus v1.9.3
 	modernc.org/sqlite v1.42.2
 )
