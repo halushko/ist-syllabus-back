@@ -68,7 +68,7 @@ func (s *SQLite) recreateTable(tableName string, headers map[string]string) {
 	i := 0
 	for _, col := range headers {
 		i++
-		sb.WriteString("\t" + col + " TEXT,\n")
+		sb.WriteString("\t" + col + " TEXT")
 
 		if i < len(headers)-1 {
 			sb.WriteString(",\n")
