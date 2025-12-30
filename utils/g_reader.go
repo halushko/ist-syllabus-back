@@ -61,7 +61,7 @@ func (r *GoogleReader) readGoogleTable(sheetName string) (map[string]string, map
 	size := 0
 	for i, h := range res[0] {
 		if h == "" {
-			size = i + 1
+			size = i
 			break
 		}
 	}

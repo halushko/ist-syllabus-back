@@ -71,7 +71,7 @@ func (s *SQLite) recreateTable(tableName string, headers map[string]string) {
 		i++
 		sb.WriteString(col + " TEXT")
 
-		if i < len(headers)-1 {
+		if i < len(headers) {
 			sb.WriteString(", ")
 		}
 	}
@@ -105,7 +105,7 @@ func (s *SQLite) fillTable(tableName string, table map[string][]string) {
 			sbc.WriteString(col)
 			sbv.WriteString("'" + table[col][j] + "'")
 
-			if i < len(table)-1 {
+			if i < len(table) {
 				sbc.WriteString(", ")
 				sbv.WriteString(", ")
 			}
