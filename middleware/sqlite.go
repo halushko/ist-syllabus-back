@@ -9,7 +9,7 @@ import (
 
 func GetAllLevels(db *utils.SQLite) ([]Level, error) {
 	levels := make([]Level, 0)
-	query := `SELECT name, lvl FROM levels ORDER BY lvl ASC;`
+	query := `SELECT name, lvl FROM levels ORDER BY CAST(lvl AS INTEGER) ASC;`
 	rows, err := db.Select(query)
 	if err != nil {
 		log.Errorf("GetAllLevels err: %v", err)
