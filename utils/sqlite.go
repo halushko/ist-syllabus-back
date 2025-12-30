@@ -68,14 +68,14 @@ func (s *SQLite) recreateTable(tableName string, headers map[string]string) {
 	i := 0
 	for _, col := range headers {
 		i++
-		sb.WriteString("\t" + col + " TEXT")
+		sb.WriteString(col + " TEXT")
 
 		if i < len(headers)-1 {
-			sb.WriteString(",\n")
+			sb.WriteString(", ")
 		}
 	}
 
-	query := fmt.Sprintf(`CREATE TABLE IF NOT EXISTS %s (%s);\n`, tableName, sb.String())
+	query := fmt.Sprintf(`CREATE TABLE IF NOT EXISTS %s (%s);`, tableName, sb.String())
 	log.Debugf("Creating table with query:\n%s", query)
 	err = s.db.Execute(query)
 
