@@ -18,6 +18,8 @@ type SQLite struct {
 }
 
 // InitSQLite creates and returns a connection to the SQLite database.
+//
+//goland:noinspection GoResourceLeak
 func InitSQLite() (*SQLite, error) {
 	sql, err := sqlite.Open(specialityDbName)
 	if err != nil {
@@ -32,6 +34,10 @@ func InitSQLite() (*SQLite, error) {
 	res := &SQLite{db: sql, g: gr, g2db: make(map[string]map[string]string), db2g: make(map[string]map[string]string)}
 
 	res.initTable(googleSheetsConfig.Levels[0], googleSheetsConfig.Levels[1])
+	res.initTable(googleSheetsConfig.Departments[0], googleSheetsConfig.Departments[1])
+	res.initTable(googleSheetsConfig.Specialties[0], googleSheetsConfig.Specialties[1])
+	res.initTable(googleSheetsConfig.Programs[0], googleSheetsConfig.Programs[1])
+	res.initTable(googleSheetsConfig.DepartmentPrograms[0], googleSheetsConfig.DepartmentPrograms[1])
 
 	return res, nil
 }
