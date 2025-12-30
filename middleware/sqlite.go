@@ -2,6 +2,7 @@ package middleware
 
 import (
 	"ist-syllabus-back/utils"
+	"strconv"
 
 	log "github.com/sirupsen/logrus"
 )
@@ -15,9 +16,14 @@ func GetAllLevels(db *utils.SQLite) ([]Level, error) {
 		return nil, err
 	}
 	for _, row := range rows {
+		lvl, err := strconv.Atoi(row["lvl"].(string))
+		if err != nil {
+			log.Errorf("GetAllLevels Atoi err for Level column: %v", err)
+			return nil, err
+		}
 		level := Level{
 			Name:  row["name"].(string),
-			Level: int(row["lvl"].(int64)),
+			Level: lvl,
 		}
 		levels = append(levels, level)
 	}
