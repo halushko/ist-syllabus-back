@@ -1,12 +1,17 @@
 package middleware
 
-import "ist-syllabus-back/utils"
+import (
+	"ist-syllabus-back/utils"
+
+	log "github.com/sirupsen/logrus"
+)
 
 func GetAllLevels(db *utils.SQLite) ([]Level, error) {
 	levels := make([]Level, 0)
 	query := `SELECT name, lvl FROM levels ORDER BY level ASC;`
 	rows, err := db.Select(query)
 	if err != nil {
+		log.Errorf("GetAllLevels err: %v", err)
 		return nil, err
 	}
 	for _, row := range rows {

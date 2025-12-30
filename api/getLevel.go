@@ -5,6 +5,7 @@ import (
 	"ist-syllabus-back/utils"
 
 	"github.com/gin-gonic/gin"
+	log "github.com/sirupsen/logrus"
 )
 
 func GetAllLevels(r *gin.Engine, db *utils.SQLite) {
@@ -12,6 +13,7 @@ func GetAllLevels(r *gin.Engine, db *utils.SQLite) {
 		resp := &getAllLevelsResult{}
 		res, err := middleware.GetAllLevels(db)
 		if err != nil {
+			log.Errorf("GetAllLevels err: %v", err)
 			resp.AddError(err)
 		} else {
 			resp.Result = res
