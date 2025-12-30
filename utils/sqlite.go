@@ -90,24 +90,32 @@ func (s *SQLite) fillTable(tableName string, table map[string][]string) {
 	var sbv strings.Builder
 
 	i := 0
-	j := 0
-	for col := range table {
-		i++
+	size := 0
 
-		sbc.WriteString(col)
-		sbv.WriteString("'" + table[col][j] + "'")
-
-		if i < len(table)-1 {
-			sbc.WriteString(", ")
-			sbv.WriteString(", ")
-		}
+	for row := range table {
+		size = len(table[row])
+		break
 	}
 
-	query := fmt.Sprintf(`INSERT INTO %s (%s) VALUES (%s);`, tableName, sbc.String(), sbv.String())
-	log.Debugf("Inserting into table with query:\n%s", query)
-	err := s.db.Execute(query)
-	if err != nil {
-		log.Errorf("Can't fill %s table: %v", tableName, err)
-		panic(err)
+	for j := 0; j < size; j++ {
+		for col := range table {
+			i++
+
+			sbc.WriteString(col)
+			sbv.WriteString("'" + table[col][j] + "'")
+
+			if i < len(table)-1 {
+				sbc.WriteString(", ")
+				sbv.WriteString(", ")
+			}
+		}
+
+		query := fmt.Sprintf(`INSERT INTO %s (%s) VALUES (%s);`, tableName, sbc.String(), sbv.String())
+		log.Debugf("Inserting into table with query:\n%s", query)
+		err := s.db.Execute(query)
+		if err != nil {
+			log.Errorf("Can't fill %s table: %v", tableName, err)
+			panic(err)
+		}
 	}
 }
