@@ -86,10 +86,6 @@ func (s *SQLite) recreateTable(tableName string, headers map[string]string) {
 }
 
 func (s *SQLite) fillTable(tableName string, table map[string][]string) {
-	var sbc strings.Builder
-	var sbv strings.Builder
-
-	i := 0
 	size := 0
 
 	for row := range table {
@@ -98,6 +94,10 @@ func (s *SQLite) fillTable(tableName string, table map[string][]string) {
 	}
 
 	for j := 0; j < size; j++ {
+		var sbc strings.Builder
+		var sbv strings.Builder
+		i := 0
+
 		for col := range table {
 			i++
 
