@@ -34,7 +34,9 @@ func main() {
 		IdleTimeout:       60 * time.Second,
 		ReadHeaderTimeout: 1 * time.Minute,
 	}
+
 	api.GetAllLevels(r, db)
+	api.GetAllStatuses(r, db)
 
 	log.Infof("Starting server with long timeouts…")
 

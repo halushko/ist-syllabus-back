@@ -33,16 +33,20 @@ func InitSQLite() (*SQLite, error) {
 
 	res := &SQLite{db: sql, g: gr, g2db: make(map[string]map[string]string), db2g: make(map[string]map[string]string)}
 
-	res.initTable(GoogleSheetsConfig.Levels[0], GoogleSheetsConfig.Levels[1])
-	res.initTable(GoogleSheetsConfig.Departments[0], GoogleSheetsConfig.Departments[1])
-	res.initTable(GoogleSheetsConfig.Specialties[0], GoogleSheetsConfig.Specialties[1])
-	res.initTable(GoogleSheetsConfig.Programs[0], GoogleSheetsConfig.Programs[1])
-	res.initTable(GoogleSheetsConfig.DepartmentPrograms[0], GoogleSheetsConfig.DepartmentPrograms[1])
+	res.initTable(GoogleSheetsConfig.Levels)
+	res.initTable(GoogleSheetsConfig.Statuses)
+	res.initTable(GoogleSheetsConfig.Departments)
+	res.initTable(GoogleSheetsConfig.Specialties)
+	res.initTable(GoogleSheetsConfig.Programs)
+	res.initTable(GoogleSheetsConfig.DepartmentPrograms)
+	res.initTable(GoogleSheetsConfig.Forms)
 
 	return res, nil
 }
 
-func (s *SQLite) initTable(sheetName, tableName string) {
+func (s *SQLite) initTable(sheet []string) {
+	sheetName := sheet[0]
+	tableName := sheet[1]
 	headers, table, err := s.g.readGoogleTable(sheetName)
 	if err != nil {
 		log.Errorf("Can't read sheet %s: %v", sheetName, err)
