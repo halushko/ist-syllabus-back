@@ -3,6 +3,7 @@ module ist-syllabus-back
 go 1.25.0
 
 require (
+	github.com/gin-contrib/cors v1.7.6
 	github.com/gin-gonic/gin v1.11.0
 	github.com/halushko/core-go v0.1.4
 	github.com/sirupsen/logrus v1.9.3

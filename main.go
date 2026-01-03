@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/halushko/core-go/logger"
 	log "github.com/sirupsen/logrus"
@@ -26,6 +27,20 @@ func main() {
 	}
 
 	r := gin.Default()
+
+	r.Use(cors.New(cors.Config{
+		AllowOrigins: []string{
+			"http://127.0.0.1:5173",
+			"http://localhost:5173",
+			"http://127.0.0.1",
+			"http://localhost",
+		},
+		AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "Authorization"},
+		ExposeHeaders:    []string{"Content-Length", "Content-Disposition"},
+		AllowCredentials: false,
+	}))
+
 	srv := &http.Server{
 		Addr:              ":8080",
 		Handler:           r,
