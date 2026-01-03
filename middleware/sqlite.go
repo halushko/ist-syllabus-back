@@ -8,7 +8,7 @@ import (
 
 func GetAllLevels(db *utils.SQLite) ([]Level, error) {
 	res := make([]Level, 0)
-	query := `SELECT DISTINCT name, id FROM levels ORDER BY CAST(lvl AS INTEGER) ASC;`
+	query := `SELECT DISTINCT name, short FROM levels ORDER BY CAST(lvl AS INTEGER) ASC;`
 	rows, err := db.Select(query)
 	if err != nil {
 		log.Errorf("GetAllLevels err: %v", err)
@@ -16,8 +16,8 @@ func GetAllLevels(db *utils.SQLite) ([]Level, error) {
 	}
 	for _, row := range rows {
 		l := Level{
-			ID:   row["id"].(string),
-			Name: row["name"].(string),
+			Short: row["short"].(string),
+			Name:  row["name"].(string),
 		}
 		res = append(res, l)
 	}
