@@ -19,7 +19,7 @@ func GetAllLevels(db *utils.SQLite) ([]Level, error) {
 	}
 	for _, row := range rows {
 		l := Level{
-			ID:   row["short"].(string),
+			ID:   row["id"].(string),
 			Name: row["name"].(string),
 		}
 		res = append(res, l)
