@@ -64,7 +64,7 @@ func GetAllForms(db *utils.SQLite) ([]IdValue, error) {
 }
 
 func GetSemestersCount(level string, db *utils.SQLite) (int, error) {
-	query := `SELECT semesters FROM levels WHERE id = '?';`
+	query := `SELECT semesters FROM levels WHERE id = ?;`
 	rows, err := db.Select(query, level)
 	if err != nil {
 		log.Errorf("GetSemestersCount err: %v", err)
