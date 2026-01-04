@@ -7,7 +7,7 @@ type Level struct {
 	Level int    `json:"level,omitempty"`
 }
 
-type Status struct {
-	ID   string `json:"id,omitempty"`
-	Name string `json:"name"`
+type IdValue struct {
+	ID    string `json:"id,omitempty"`
+	Value string `json:"value"`
 }

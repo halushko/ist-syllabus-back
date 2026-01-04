@@ -8,12 +8,12 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func GetAllLevels(r *gin.Engine, db *utils.SQLite) {
-	r.GET("/api/get-all-statuses", func(c *gin.Context) {
+func GetAllForms(r *gin.Engine, db *utils.SQLite) {
+	r.GET("/api/get-all-forms", func(c *gin.Context) {
 		resp := &getIdValueResult{}
-		res, err := middleware.GetAllStatuses(db)
+		res, err := middleware.GetAllForms(db)
 		if err != nil {
-			log.Errorf("GetAllStatuses err: %v", err)
+			log.Errorf("GetAllForms err: %v", err)
 			resp.AddError(err)
 		} else {
 			resp.Values = res

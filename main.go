@@ -52,6 +52,8 @@ func main() {
 
 	api.GetAllLevels(r, db)
 	api.GetAllStatuses(r, db)
+	api.GetAllForms(r, db)
+	api.GetAllSemesters(r, db)
 
 	log.Infof("Starting server with long timeouts…")
 
@@ -59,15 +61,4 @@ func main() {
 		log.Errorf("[FATAL] %v", err)
 		panic(err)
 	}
-	//c, err := google.NewFromServiceAccountFile(ctx, GoogleCredentialsPath)
-	//if err != nil {
-	//	log.Error("Failed to create Google Sheets client: ", err)
-	//	return
-	//}
-	//res, err := c.ReadByA1(ctx, SpreadSheetId, "Кафедри", "A", 1, "B", 4)
-	//if err != nil {
-	//	log.Error("Failed to read data from Google Sheets: ", err)
-	//	return
-	//}
-	//log.Infof("Read data: %v", res)
 }

@@ -9,7 +9,7 @@ type getAllLevelsResult struct {
 	Levels []middleware.Level `json:"levels"`
 }
 
-type getAllStatusesResult struct {
+type getIdValueResult struct {
 	Response
-	Statuses []middleware.Status `json:"statuses"`
+	Values []middleware.IdValue `json:"values"`
 }
