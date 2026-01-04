@@ -8,7 +8,7 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func GetAllLevels(r *gin.Engine, db *utils.SQLite) {
+func GetAllStatuses(r *gin.Engine, db *utils.SQLite) {
 	r.GET("/api/get-all-statuses", func(c *gin.Context) {
 		resp := &getIdValueResult{}
 		res, err := middleware.GetAllStatuses(db)
